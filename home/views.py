@@ -11,7 +11,20 @@ from django.http import HttpResponse
 #                          <hr/>
 #                          """)
 def home (request):
-    return render(request,"Home/index.html")
+
+    peoples = [
+        {'name' : 'Arham',
+         'age' : 20
+        },
+        {'name' : 'Saad',
+         'age' : 16
+        },
+        {'name' : 'Subhan',
+         'age' : 10
+        },
+    ]
+    page = "Home"
+    return render(request,"Home/index.html",context={"peoples":peoples,"page":page})
 
 
 def success_page(request):

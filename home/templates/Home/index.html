@@ -1,15 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django</title>
-</head>
-<body>
-    <h3>This is html templete</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos magnam alias velit sunt repellat nesciunt nostrum deleniti corporis sed nisi!</p>
-</body>
-</html>
-<script>
-    console.log('hey jango')
-</script>
+{% extends 'base.html' %}
+
+{% block main %}
+<h3>This is an HTML template</h3>
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Can Vote</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for person in peoples %}
+        <tr>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+            <td>
+                {% if person.age >= 18 %}
+                    Yes
+                {% else %}
+                    No
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p>{{ peoples }}</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos magnam alias velit sunt repellat nesciunt nostrum deleniti corporis sed nisi!</p>
+{% endblock main %}
