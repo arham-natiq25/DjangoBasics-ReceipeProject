@@ -42,8 +42,8 @@ INSTALLED_APPS = [
 
 # YOUR CREATED APPS 
 EXTERNAL_APPS = [
-    'accounts',
-    'home'
+    'home',
+    'vege'
 ]
 
 INSTALLED_APPS+=EXTERNAL_APPS
@@ -124,7 +124,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+import os
+
+# STATIC_ROOT='staticfiles'
+# STATIC_URL = 'static/'
+
+
+STATIC_ROOT='/static/'
+STATIC_URL = os.path.join(BASE_DIR,"public/static/")
+
+STATICFILES_DIR = {
+    os.path.join(BASE_DIR,"public/static/")
+}
+MEDIA_ROOT= os.path.join(BASE_DIR,"public/static/")
+MEDIA_URL="/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

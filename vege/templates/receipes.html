@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Recipe App</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.3.2 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous"
+    />
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-success text-white text-center">
+                <h2>Add Recipe</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="recipeName" class="form-label">Recipe Name</label>
+                        <input 
+                            name="name" 
+                            type="text" 
+                            class="form-control" 
+                            id="recipeName" 
+                            placeholder="Enter recipe name" 
+                            required
+                        />
+                    </div>
+                    <div class="mb-4">
+                        <label for="recipeImage" class="form-label">Image</label>
+                        <input 
+                            type="file" 
+                            name="image" 
+                            class="form-control" 
+                            id="recipeImage" 
+                            required
+                        />
+                    </div>
+                    <div class="mb-4">
+                        <label for="recipeDescription" class="form-label">Recipe Description</label>
+                        <textarea 
+                            name="description" 
+                            class="form-control" 
+                            id="recipeDescription" 
+                            rows="4" 
+                            placeholder="Write a brief description about the recipe" 
+                            required
+                        ></textarea>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            Add Recipe
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 mt-5">
+                <form>
+                    <input type="text" name="search" placeholder="Search by receipe name"  class="form-control">
+                    <button class="btn btn-primary m-3">Search</button>
+                </form>
+            </div>    
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle">
+                <thead class="table-success text-center">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    {% for receipe in receipes %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ receipe.receipe_name }}</td>
+                        <td>{{ receipe.receipe_description }}</td>
+                        <td>
+                            <img 
+                                src="/media/{{ receipe.receipe_image }}" 
+                                alt="Recipe Image" 
+                                class="img-thumbnail" 
+                                style="max-width: 100px; height: auto;"
+                            />
+                        </td>
+                        <td>
+                            <a href="/delete-receipe/{{receipe.id}}/" class="btn btn-danger">Delete</a>
+                            <a href="/update-receipe/{{receipe.id}}/" class="btn btn-primary">Edit</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+  
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"
+    ></script>
+</body>
+</html>

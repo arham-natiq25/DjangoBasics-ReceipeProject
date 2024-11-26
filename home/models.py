@@ -10,3 +10,7 @@ class Student(models.Model):
     img = models.ImageField()
     file  = models.FileField()
     
+
+class Car(models.Model):
+    car_name = models.CharField(max_length=250)
+    speed = models.IntegerField();    
