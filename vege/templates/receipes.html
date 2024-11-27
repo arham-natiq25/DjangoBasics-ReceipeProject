@@ -16,6 +16,22 @@
 </head>
 <body class="bg-light">
     <div class="container py-5">
+        <div class="row">
+            <div class="col-md-6">
+                {% if request.user.is_authenticated %}
+                Logged In User : {{request.user.username}}
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                
+                {% if request.user.is_authenticated %}
+                <a href="/logout_page" class="btn btn-danger">Logout</a>
+                {% else %}
+                <a href="/login_page" class="btn btn-primary">Login</a>
+                {% endif %}
+                    
+            </div>
+        </div>
         <div class="card shadow-lg border-0">
             <div class="card-header bg-success text-white text-center">
                 <h2>Add Recipe</h2>
